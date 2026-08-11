@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>S. Streiff — Portfolio</title>
+<style>
+  :root{
+    --paper:#f2efe7;
+    --ink:#1c2b3a;
+    --blue:#2c4a6e;
+    --rust:#a4462c;
+    --line:#c9c1ae;
+    --paper-dark:#e7e1d1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Iowan Old Style','Georgia',serif;
+    line-height:1.5;
+  }
+  .titleblock{
+    border-bottom:3px solid var(--ink);
+    padding:2.2rem 6vw 1.4rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .titleblock h1{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .titleblock .sub{
+    font-family:'Courier New',monospace;
+    font-size:0.78rem;
+    color:var(--blue);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    margin-top:0.3rem;
+  }
+  .titleblock .meta{
+    font-family:'Courier New',monospace;
+    font-size:0.72rem;
+    color:#6b6355;
+    text-align:right;
+    line-height:1.7;
+  }
+  main{max-width:1400px;margin:0 auto;padding:3rem 6vw 5rem;}
+  .intro{
+    font-size:1.02rem;
+    color:#3a3226;
+    margin-bottom:3.5rem;
+  }
+  .sheet{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--paper-dark);
+    margin-bottom:2.4rem;
+    padding:1.8rem 1.8rem 1.6rem;
+  }
+  .sheet::before{
+    content:attr(data-no);
+    position:absolute;
+    top:-1px; left:-1px;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    padding:0.25rem 0.6rem;
+    letter-spacing:0.06em;
+  }
+  .sheet-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:0.5rem;
+    margin-bottom:0.9rem;
+    padding-top:0.6rem;
+  }
+  .sheet h2{
+    font-size:1.35rem;
+    font-weight:600;
+  }
+  .tag{
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    color:var(--rust);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    border:1px solid var(--rust);
+    padding:0.15rem 0.5rem;
+    white-space:nowrap;
+  }
+  .sheet p{
+    color:#4a4536;
+    font-size:0.95rem;
+    margin-bottom:0.9rem;
+    text-align:justify;
+    hyphens:auto;
+  }
+  .sheet .link{
+    font-family:'Courier New',monospace;
+    font-size:0.8rem;
+    color:var(--blue);
+    text-decoration:none;
+    border-bottom:1px solid var(--blue);
+  }
+  .swatchrow{
+    display:flex;
+    gap:0.6rem;
+    margin-top:1rem;
+    flex-wrap:wrap;
+  }
+  .swatch{
+    width:64px;height:44px;
+    border:1px solid var(--line);
+    background:repeating-linear-gradient(135deg,#d8d2c0,#d8d2c0 4px,#cfc8b4 4px,#cfc8b4 8px);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Courier New',monospace;
+    font-size:0.6rem;
+    color:#6b6355;
+  }
+  .video-wrap{
+    position:relative;
+    width:100%;
+    max-width:520px;
+    aspect-ratio:16/9;
+    margin-top:1rem;
+    border:1px solid var(--line);
+    background:#000;
+  }
+  .video-wrap iframe{
+    width:100%;
+    height:100%;
+    display:block;
+    border:0;
+  }
+  .column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  }
+  .carousel{
+  position:relative;
+  max-width:1400px;
+  width:100%;
+  margin-top:1rem;
+  border:1px solid var(--line);
+  background:#000;
+  }
+  .carousel-img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:16/11;
+    object-fit:contain;
+    background:#111;
+  }
+  .carousel-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(28,43,58,0.75);
+    color:var(--paper);
+    border:none;
+    font-size:1.2rem;
+    width:36px;
+    height:36px;
+    cursor:pointer;
+  }
+  .carousel-prev{left:0.5rem;}
+  .carousel-next{right:0.5rem;}
+  .carousel-arrow:hover{background:var(--rust);}
+  .carousel-caption{
+    font-family:'Courier New',monospace;
+    font-size:0.72rem;
+    color:#fff;
+    padding:0.5rem 0.2rem 0;
+  }
+  .carousel-caption-real{
+    font-family:'Courier New',monospace;
+    font-size:0.72rem;
+    color:#fff;
+    padding:0.5rem 0.2rem 0;
+  }
+  .linkedin-link{
+    color:var(--blue);
+    font-size:1.8rem;
+    display:inline-flex;
+    transition:color 0.15s;
+  }
+  .linkedin-link:hover{
+    color:var(--rust);
+  }
+  footer{
+    border-top:1px solid var(--line);
+    padding:1.6rem 6vw;
+    font-family:'Courier New',monospace;
+    font-size:0.7rem;
+    color:#8a8270;
+    text-align:center;
+  }
+  @media(max-width:520px){
+    .titleblock{flex-direction:column;align-items:flex-start;}
+    .titleblock .meta{text-align:left;}
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="titleblock">
+    <div>
+      <h1>Samuel Streiff</h1>
+      <div class="sub">B.Sc. Mechanical Engineering</div>
+    </div>
+    <a href="https://www.linkedin.com/in/samuel-s-b539791b7/" target="_blank" rel="noopener" class="linkedin-link" aria-label="LinkedIn profile">
+      <svg viewBox="0 0 24 24" width="1em" height="1em">
+        <rect width="24" height="24" rx="4" fill="currentColor"/>
+        <path fill="var(--paper)" d="M7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28z"/>
+      </svg>
+    </a>
+  </div>
+
+  <main>
+    <p class="intro">
+      A small selection of things I've built and organized — from my bachelor thesis to a self-built balcony lounge. Hosted as a simple site via GitHub Pages.
+    </p>
+
+    <section class="sheet" data-no="01">
+      <div class="sheet-head">
+        <h2>Bachelor Thesis</h2>
+      </div>
+      <p>
+        Final thesis for my B.Sc. in Mechanical Engineering at Hochschule Luzern - Technik & Architektur. The project focused on developing a control algorithm that enables a mobile robot to autonomously follow a designated channel and maintain a stable trajectory.
+      </p>  
+      <p>  
+        Below you can find a short summary, the complete thesis including the appendix, and a short demonstration video of the robot in operation.
+      </p>
+      <div class="column">
+        <a class="link" href="assets/thesis/Plakat.pdf">→ Bachelor Thesis Summary</a>
+        <a class="link" href="assets/thesis/Bachelorthesis.pdf">→ Bachelor Thesis</a>
+        <a class="link" href="https://youtube.com/shorts/Wt8f_McBgws?feature=share">→ Demovideo</a>
+      </div>
+
+    
+    </section>
+
+    <section class="sheet" data-no="02">
+      <div class="sheet-head">
+        <h2>Balcony Lounge</h2>
+      </div>
+      <p>
+        Self-designed and self-built lounge — from 3D modeling to the finished
+        build. CAD models and photos of the completed lounge.
+      </p>
+      <div class="carousel" id="lounge-carousel">
+        <div class="carousel-caption carousel-spacer">&nbsp;</div>
+        <button class="carousel-arrow carousel-prev" aria-label="Previous image">&#8592;</button>
+        <img class="carousel-img" src="assets/lounge/Anna3.png" alt="Lounge view">
+        <button class="carousel-arrow carousel-next" aria-label="Next image">&#8594;</button>
+        <div class="carousel-caption-real">CAD 01 - Lounge compact</div>
+      </div>
+    </section>
+
+    <section class="sheet" data-no="03">
+      <div class="sheet-head">
+        <h2>Annual SAC Hut Hike</h2>
+      </div>
+      <p>
+        An annual hike to an SAC mountain hut with former university friends —
+        route planning, coordination, and execution, organized every year.
+      </p>
+      <div class="carousel" id="hike-carousel">
+  <div class="carousel-caption carousel-spacer">&nbsp;</div>
+  <button class="carousel-arrow carousel-prev" aria-label="Previous image">&#8592;</button>
+  <img class="carousel-img" src="assets/hike/1.jpg" alt="Hike view">
+  <button class="carousel-arrow carousel-next" aria-label="Next image">&#8594;</button>
+  <div class="carousel-caption carousel-caption-real">Photo 01</div>
+</div>
+    </section>
+  </main>
+
+  <footer>
+    samuelstreiff.github.io — hosted with GitHub Pages
+  </footer>
+<script>
+  (function(){
+    const images = [
+      { src: "assets/lounge/Anna3.png", caption: "CAD 01 - Lounge compact" },
+      { src: "assets/lounge/Anna7.png", caption: "CAD 02 - Lounge extended" },
+      { src: "assets/lounge/Lounge_Ein_oK.jpeg", caption: "Lounge compact" },
+      { src: "assets/lounge/Lounge_aus_ok_1.jpeg", caption: "Lounge extended" },
+      { src: "assets/lounge/Lounge_ein_mk_1.jpeg", caption: "Lounge compact with pillows" },
+      { src: "assets/lounge/Lounge_aus_mk.jpeg", caption: "Lounge extended with pillows" }
+    ];
+    let i = 0;
+    const carousel = document.getElementById("lounge-carousel");
+    const img = carousel.querySelector(".carousel-img");
+    const caption = carousel.querySelector(".carousel-caption-real");
+
+    function show(index){
+      i = (index + images.length) % images.length;
+      img.src = images[i].src;
+      caption.textContent = images[i].caption;
+    }
+
+    carousel.querySelector(".carousel-prev").addEventListener("click", () => show(i - 1));
+    carousel.querySelector(".carousel-next").addEventListener("click", () => show(i + 1));
+  })();
+</script>
+<script>
+  (function(){
+    const images = [
+      { src: "assets/hike/1.JPG", caption: "Photo 01" },
+      { src: "assets/hike/2.JPG", caption: "Photo 02" },
+      { src: "assets/hike/3.JPG", caption: "Photo 03" },
+      { src: "assets/hike/4.JPG", caption: "Photo 04" },
+      { src: "assets/hike/Route.jpeg", caption: "Route overview" }
+    ];
+    let i = 0;
+    const carousel = document.getElementById("hike-carousel");
+    const img = carousel.querySelector(".carousel-img");
+    const caption = carousel.querySelector(".carousel-caption-real");
+
+    function show(index){
+      i = (index + images.length) % images.length;
+      img.src = images[i].src;
+      caption.textContent = images[i].caption;
+    }
+
+    carousel.querySelector(".carousel-prev").addEventListener("click", () => show(i - 1));
+    carousel.querySelector(".carousel-next").addEventListener("click", () => show(i + 1));
+  })();
+</script>
+</body>
+</html>
